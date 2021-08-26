@@ -7,18 +7,19 @@ const message_input = document.getElementById('price-message')
 const phone_input = document.getElementById('phone')
 const link_container = document.getElementById('link-container')
 const button_month = document.getElementById('this-month')
+const policy_input = document.getElementById('policy')
 
 const date = new Date
 const month_number = date.getMonth()
 
-let name
-let price
-let day
-let month
-let salesman = 'Rafael'
-let pronombre
-let phone
-let message_url 
+let name = name_input.value
+let price = price_input.value
+let day = day_input.value
+let salesman = salesman_input.value
+let phone = phone_input.value
+let policy = policy_input.value
+let message_url
+let policy_url
 
 let message
 
@@ -40,6 +41,8 @@ const months = {
 const currentMonth = months[month_number]
 const upcomingMonth = months[month_number + 1]
 
+let month = upcomingMonth
+
 month_input.value = upcomingMonth
 
 const setCurrentMonth = () => {
@@ -59,11 +62,16 @@ const toggleMonth = () => {
         setUpcomingMonth()
         :
         setCurrentMonth()
+    setMessage()
 }
-
-
+    
+    
 const setMessage = () => {
-    message = `Hola, buen día ${name}, soy ${salesman} de la agencia Hyundai Colomos, le escribo para ayudarle a revisar opciones de renovación de la póliza de seguro de su vehículo la cual tiene como vencimiento el día ${day} de ${month}, la propuesta que tenemos con las mismas condiciones que tuvimos el periodo que vence tiene un precio de $${price}, quedo atento a cualquier comentario de su parte, muchas gracias ${name}!`
+    policy_url = `https://hyundaiprotect.eikos.com.mx/CotizadorAutos/Polizas/${policy}.pdf`
+
+    message = `Hola, buen día ${name}, soy ${salesman} de la agencia Hyundai Colomos, le escribo para ayudarle a revisar opciones de renovación de la póliza de seguro de su vehículo la cual tiene como vencimiento el día ${day} de ${month}, en el enlance al final de este mensaje está la propuesta con las mismas coberturas que tuvimos el periodo que esta venciendo, esta tiene un precio de $${price}, quedo atento a cualquier comentario de su parte, muchas gracias ${name}! ${policy_url}`
+
+    message_input.innerText = message
 
     let encoded = message
 
@@ -71,7 +79,10 @@ const setMessage = () => {
         encoded = encoded.replace(' ', '%20')
     }
 
+    console.log(encoded)
+
     message_url = `https://wa.me/52${phone}/?text=${encoded}`
+
 
     if(phone){
         phone.length = 10?
@@ -80,7 +91,6 @@ const setMessage = () => {
             link_container.innerHTML = ''
     }
 
-    message_input.innerText = message
 }
 
 const setName = e => {
@@ -99,6 +109,7 @@ const setDay = e => {
 }
 
 const setMonth = e => {
+    debugger
     month = e.target.value
     setMessage()
 }
@@ -113,6 +124,11 @@ const setSalesman = e => {
     setMessage()
 }
 
+const setPolicy = e => {
+    policy = e.target.value
+    setMessage()
+}
+
 
 name_input.addEventListener('change', setName)
 price_input.addEventListener('change', setPrice)
@@ -120,4 +136,5 @@ day_input.addEventListener('change', setDay)
 month_input.addEventListener('change', setMonth)
 phone_input.addEventListener('change', setPhone)
 salesman_input.addEventListener('change', setSalesman)
+policy_input.addEventListener('change', setPolicy)
 button_month.addEventListener('click', toggleMonth)
