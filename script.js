@@ -69,7 +69,7 @@ const toggleMonth = () => {
 const setMessage = () => {
     policy_url = `https://hyundaiprotect.eikos.com.mx/CotizadorAutos/Polizas/${policy}.pdf`
 
-    message = `Hola, buen día ${name}, soy ${salesman} de la agencia Hyundai Colomos, le escribo para ayudarle a revisar opciones de renovación de la póliza de seguro de su vehículo la cual tiene como vencimiento el día ${day} de ${month}, en el enlace al final de este mensaje está la propuesta con las mismas coberturas que tuvimos el periodo que esta venciendo, esta tiene un precio de ${price}, quedo atento a cualquier comentario de su parte, muchas gracias ${name}! ${policy_url}`
+    message = `Hola, buen día ${name}, soy ${salesman} de la agencia Hyundai Colomos, le escribo para ayudarle a revisar opciones de renovación de la póliza de seguro de su vehículo la cual tiene como vencimiento el día ${day} de ${month}, en el enlace al final de este mensaje está la propuesta con las mismas coberturas que tuvimos el periodo que esta venciendo, esta tiene un precio de ${price}, quedo atento a cualquier comentario de su parte, muchas gracias ${name}! ${policy_url}, si aún sigues pagando tu auto por medio de algún financiamiento haz caso omiso a este mensaje`
 
     message_input.innerText = message
 
